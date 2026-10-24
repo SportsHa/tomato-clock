@@ -1,0 +1,30 @@
+# 依赖与构建产物
+node_modules/
+dist/
+.cache/
+
+# 本地数据与备份
+data/
+*.bak
+backup-*.json
+
+# 日志
+*.log
+日志/
+
+# 设计过程 / 原型 / 参考资料（本地保留，不入库）
+设计过程/
+原型/
+参考分析/
+backups/
+
+# 系统
+Thumbs.db
+desktop.ini
+.DS_Store
+# 本机专属配置（路径/镜像），示例见 app/.npmrc.example
+app/.npmrc
+
+# 个人工作笔记，不入库
+备忘-待办.md
+创作目录说明.md

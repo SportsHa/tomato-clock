@@ -1,0 +1,46 @@
+{
+  "name": "tomato-clock",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Minimal pomodoro timer with local history",
+  "main": "main.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis"
+  },
+  "build": {
+    "appId": "com.dmk.tomatoclock",
+    "productName": "番茄钟",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**",
+      "assets/**"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "electronDownload": {
+      "mirror": "https://npmmirror.com/mirrors/electron/"
+    }
+  },
+  "devDependencies": {
+    "electron": "^44.9.0",
+    "electron-builder": "^26.15.3"
+  },
+  "author": {
+    "name": "dingm"
+  }
+}
