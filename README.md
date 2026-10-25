@@ -26,7 +26,7 @@ No account, no cloud, no network access. All data stays on your machine.
 
 这个项目由人和模型协作完成，分工如下：
 
-- **dreamworld（作者）**：提出需求与目标；决定产品取向（本地优先、拒绝云同步与订阅、窗口用黄金比例最小尺寸）；逐版验收视觉与交互，指出"背景太惨白""已完成字号太小""菜单点外面不消失"这类具体问题；决定开源与发布方式。
+- **dreamworld（作者）**：提出需求与目标，决定产品方向，决定开源与发布方式。
 - **DeepSeek Harness 桌面端中的 deepseek-flash 模型**：承担具体实现与排查——Electron 主进程（窗口、托盘、计时引擎、数据读写）、渲染层界面与样式、中英文文案、打包与发布脚本、文档撰写；遇到问题负责取证定位（截图比对、像素取样、窗口句柄排查）。
 
 协作方式可以概括为"人定方向、模型动手、人验收"。界面上的每一处细节都来自作者自己的截图与复查意见；模型产出并不被认为天然正确——它确实出过错（例如一次准备示例截图时替换数据把作者的真实记录覆盖了，最后从应用自动备份恢复），所以每次改动都以作者的实际使用验收为准。
@@ -47,7 +47,7 @@ The feature set is deliberately small: no project management, no collaboration, 
 
 The project is a collaboration between a human and a model:
 
-- **dreamworld (author)**: defined the requirements and goals; made the product calls (local-first, no cloud sync, no subscription, golden-ratio minimum window size); reviewed every revision and reported concrete problems ("the background looks washed out", "the completed-task text is too small", "the menu does not close when I click elsewhere"); decided to open-source and publish it.
+- **dreamworld (author)**: defined the requirements and goals, set the product direction, and decided to open-source and publish it.
 - **The `deepseek-flash` model inside DeepSeek Harness (desktop)**: did the implementation and diagnosis — Electron main process (window, tray, timer engine, data storage), renderer UI and styling, Chinese/English copy, packaging and release scripts, documentation — and gathered evidence when something broke (screenshot comparison, pixel sampling, window-handle inspection).
 
 The loop is simple: the human sets the direction, the model does the work, the human accepts the result. Every visual detail in the current version came from the author's own screenshots and follow-up notes. Model output is not assumed correct — it has made real mistakes (one round of preparing demo screenshots overwrote the author's own records, later recovered from the app's automatic backup), which is why each change is verified in real use before it ships.
