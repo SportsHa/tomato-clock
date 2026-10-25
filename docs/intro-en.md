@@ -1,6 +1,6 @@
 # Tomato Clock · English Introduction
 
-[中文介绍](intro-zh.md) · [Back to README](../README.md)
+[中文介绍](intro-zh.md) · [Back to README](../README.en.md)
 
 ---
 
