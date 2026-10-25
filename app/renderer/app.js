@@ -584,7 +584,7 @@
 
     frame(
       '<div class="tb2 page"><span class="back" id="back">←</span><span class="title">' + t('nav.stats') + '</span><span class="ico"></span></div>'
-      + '<div style="flex:1;overflow-y:auto">'
+      + '<div class="pane" style="flex:1;overflow-y:auto">'
       + '<div class="seg">'
       + '<span data-p="week" class="' + (period === 'week' ? 'on' : '') + '">' + t('period.week') + '</span>'
       + '<span data-p="month" class="' + (period === 'month' ? 'on' : '') + '">' + t('period.month') + '</span>'
@@ -697,7 +697,7 @@
 
     frame(
       '<div class="tb2 page"><span class="back" id="back">←</span><span class="title">' + t('nav.history') + '</span><span class="ico"></span></div>'
-      + '<div style="flex:1;overflow-y:auto">'
+      + '<div class="pane" style="flex:1;overflow-y:auto">'
       + '<div class="histsum">' + t('stats.recap', daySet.size, all.length, Math.floor(totalM / 60), totalM % 60) + '</div>'
       + (html || '<div class="empty" style="padding:24px 0">' + t('stats.noRecord') + '</div>')
       + '</div>'

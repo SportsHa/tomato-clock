@@ -442,3 +442,20 @@ body.dark .chip:hover{background:#E2703A;border-color:#E2703A}
 body.dark .donebtn:hover{background:#2E9E5B;border-color:#2E9E5B}
 body.dark .a:hover{background:#E2703A}
 body.dark .star:hover{color:var(--accent)}
+/* ---------- 细滚动条（页面级） ---------- */
+html,body,.vbody,.page{scrollbar-width:thin}
+.vbody::-webkit-scrollbar,.page::-webkit-scrollbar{width:6px;height:6px}
+.vbody::-webkit-scrollbar-track,.page::-webkit-scrollbar-track{background:transparent}
+.vbody::-webkit-scrollbar-thumb,.page::-webkit-scrollbar-thumb{background:#DCD8CF;border-radius:3px}
+.vbody::-webkit-scrollbar-thumb:hover,.page::-webkit-scrollbar-thumb:hover{background:#C9C3B7}
+body.dark .vbody::-webkit-scrollbar-thumb,body.dark .page::-webkit-scrollbar-thumb{background:#3A3F45}
+body.dark .vbody::-webkit-scrollbar-thumb:hover,body.dark .page::-webkit-scrollbar-thumb:hover{background:#4A5057}
+/* ---------- GLOBAL-SB 细滚动条 ---------- */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#DCD8CF;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:#C9C3B7}
+body.dark ::-webkit-scrollbar-thumb{background:#3A3F45}
+body.dark ::-webkit-scrollbar-thumb:hover{background:#4A5057}
+
+.pane::-webkit-scrollbar{width:0;height:0}

@@ -6,11 +6,11 @@
 A minimal, local-first pomodoro timer for Windows: tasks → timer → statistics.
 No account, no cloud, no network access. All data stays on your machine.
 
-![任务列表](docs/screenshot-tasks.png)
-
-| 计时 | 统计 |
+| 任务 Tasks | 专注 Focus |
 |---|---|
-| ![计时](docs/screenshot-timer.png) | ![统计](docs/screenshot-stats.png) |
+| ![任务](docs/shot-tasks.png) | ![专注](docs/shot-timer.png) |
+| **统计 Stats** | **设置 Settings** |
+| ![统计](docs/shot-stats.png) | ![设置](docs/shot-settings.png) |
 
 ---
 
@@ -49,11 +49,11 @@ No account, no cloud, no network access. All data stays on your machine.
 
 ## 安装 Install
 
-**不想装 Node.js / 不想自己构建**：直接从 [Releases](https://github.com/dreamworld2023/tomato-clock/releases) 下载 `TomatoClock-Setup-1.0.0.exe`，双击安装即可（按用户安装，不需要管理员权限）。
+**不想装 Node.js / 不想自己构建**：直接从 [Releases](https://github.com/dreamworld2023/tomato-clock/releases) 下载 `TomatoClock-Setup-1.0.1.exe`，双击安装即可（按用户安装，不需要管理员权限）。
 
 安装包未做代码签名，Windows SmartScreen 可能提示"未知发布者"：点 **更多信息 → 仍要运行** 即可。
 
-Don't want to build it yourself? Download `TomatoClock-Setup-1.0.0.exe` from [Releases](https://github.com/dreamworld2023/tomato-clock/releases) and run it — it installs per user and needs no administrator rights.
+Don't want to build it yourself? Download `TomatoClock-Setup-1.0.1.exe` from [Releases](https://github.com/dreamworld2023/tomato-clock/releases) and run it — it installs per user and needs no administrator rights.
 
 The build is not code-signed, so Windows SmartScreen may warn about an unknown publisher — choose **More info → Run anyway**.
 
