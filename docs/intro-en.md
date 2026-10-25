@@ -10,7 +10,7 @@ It started from a small irritation: several pomodoro apps hide "view your histor
 
 The feature set is deliberately small: no project management, no collaboration, no leaderboards. Open the app and today's list is there; hover a row and 5 / 15 / 25-minute sessions appear; one click starts the timer, and a break can follow automatically. Statistics break the time down by week, month or year, with per-task share; history adds a heatmap for the longer rhythm. Light and dark themes, Chinese and English UI.
 
-![Tasks](shot-tasks.png)
+![Task list in English](shot-tasks-en.png)
 
 ## How it was built
 
