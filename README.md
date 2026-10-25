@@ -14,6 +14,48 @@ No account, no cloud, no network access. All data stays on your machine.
 
 ---
 
+## 中文
+
+番茄钟是一个给 Windows 用的极简桌面计时器，只做三件事：列出今天要做的事、专心做完一段、回头看时间花在了哪里。
+
+它起源于一个很小的不快：不少番茄钟把"查看历史记录"放进付费会员，而我只是想知道这个月究竟专注了多少小时。于是索性自己写一个——数据存在本机、不要账号、不联网、也不订阅。
+
+功能上刻意保持克制：没有项目管理、没有协作、没有排行榜。打开就是今天的任务列表，鼠标移到某一行才出现 5 / 15 / 25 分钟，点一下开始；专注结束可自动进入休息；统计页按周、月、年给出每天的投入与每个任务的时长占比；历史页用热力图看长期节奏。界面提供浅色与深色两套，中文与英文双语。
+
+### 开发方式与分工
+
+这个项目由人和模型协作完成，分工如下：
+
+- **丁明凯（作者）**：提出需求与目标；决定产品取向（本地优先、拒绝云同步与订阅、窗口用黄金比例最小尺寸）；逐版验收视觉与交互，指出"背景太惨白""已完成字号太小""菜单点外面不消失"这类具体问题；决定开源与发布方式。
+- **DeepSeek Harness 桌面端中的 deepseek-flash 模型**：承担具体实现与排查——Electron 主进程（窗口、托盘、计时引擎、数据读写）、渲染层界面与样式、中英文文案、打包与发布脚本、文档撰写；遇到问题负责取证定位（截图比对、像素取样、窗口句柄排查）。
+
+协作方式可以概括为"人定方向、模型动手、人验收"。界面上的每一处细节都来自作者自己的截图与复查意见；模型产出并不被认为天然正确——它确实出过错（例如一次准备示例截图时替换数据把作者的真实记录覆盖了，最后从应用自动备份恢复），所以每次改动都以作者的实际使用验收为准。
+
+开发使用的模型版本记录如下：`deepseek-flash`（显示名 DeepSeek-V4.1-Flash），服务方 `deepseek-account`，推理档位 `high`，上下文 100 万 tokens。日期：2026 年 10 月。
+
+---
+
+## English
+
+Tomato Clock is a minimal desktop pomodoro timer for Windows. It does three things: keep today's tasks in view, run one focused stretch at a time, and show where the hours actually went.
+
+It started from a small irritation: several pomodoro apps hide "view your history" behind a paid tier, and all I wanted was to know how many hours I had focused this month. So I wrote my own — data stays on the machine, no account, no network, no subscription.
+
+The feature set is deliberately small: no project management, no collaboration, no leaderboards. Open the app and today's list is there; hover a row and 5 / 15 / 25-minute sessions appear; one click starts the timer, and a break can follow automatically. Statistics break the time down by week, month or year, with per-task share; history adds a heatmap for the longer rhythm. Light and dark themes, Chinese and English UI.
+
+### How it was built
+
+The project is a collaboration between a human and a model:
+
+- **Mingkai Ding (author)**: defined the requirements and goals; made the product calls (local-first, no cloud sync, no subscription, golden-ratio minimum window size); reviewed every revision and reported concrete problems ("the background looks washed out", "the completed-task text is too small", "the menu does not close when I click elsewhere"); decided to open-source and publish it.
+- **The `deepseek-flash` model inside DeepSeek Harness (desktop)**: did the implementation and diagnosis — Electron main process (window, tray, timer engine, data storage), renderer UI and styling, Chinese/English copy, packaging and release scripts, documentation — and gathered evidence when something broke (screenshot comparison, pixel sampling, window-handle inspection).
+
+The loop is simple: the human sets the direction, the model does the work, the human accepts the result. Every visual detail in the current version came from the author's own screenshots and follow-up notes. Model output is not assumed correct — it has made real mistakes (one round of preparing demo screenshots overwrote the author's own records, later recovered from the app's automatic backup), which is why each change is verified in real use before it ships.
+
+Model version used for development: `deepseek-flash` (display name DeepSeek-V4.1-Flash), provider `deepseek-account`, reasoning effort `high`, 1M-token context. Date: October 2026.
+
+---
+
 ## 功能 Features
 
 **中文**
@@ -91,8 +133,7 @@ npm run dist         # 打包安装包，输出到 app/dist
 │   ├── renderer/        界面：app.js / app.css / i18n.js
 │   └── assets/          图标与托盘图
 ├── docs/                截图与示例数据
-├── LICENSE              MIT
-└── 创作目录说明.md       本地创作过程与设计记录（不入库内容见 .gitignore）
+└── LICENSE              MIT
 ```
 
 计时引擎运行在主进程，关闭窗口不会丢失正在进行的番茄；`Space`、`Esc`、`Ctrl+1/2/0` 由主进程或渲染进程按场景处理。
