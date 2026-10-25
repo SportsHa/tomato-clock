@@ -14,48 +14,19 @@ No account, no cloud, no network access. All data stays on your machine.
 
 ---
 
-## 中文
+## 介绍 Introduction
 
-番茄钟是一个给 Windows 用的极简桌面计时器，只做三件事：列出今天要做的事、专心做完一段、回头看时间花在了哪里。
+完整介绍分成两页，按语言各自独立：
 
-它起源于一个很小的不快：不少番茄钟把"查看历史记录"放进付费会员，而我只是想知道这个月究竟专注了多少小时。于是索性自己写一个——数据存在本机、不要账号、不联网、也不订阅。
+| 中文 | English |
+|---|---|
+| [**中文介绍** →](docs/intro-zh.md) | [**English introduction** →](docs/intro-en.md) |
 
-功能上刻意保持克制：没有项目管理、没有协作、没有排行榜。打开就是今天的任务列表，鼠标移到某一行才出现 5 / 15 / 25 分钟，点一下开始；专注结束可自动进入休息；统计页按周、月、年给出每天的投入与每个任务的时长占比；历史页用热力图看长期节奏。界面提供浅色与深色两套，中文与英文双语。
+两页内容对应：为什么做这个工具、它做了什么、以及人与模型在这次开发中的分工和所用模型版本。
 
-### 开发方式与分工
-
-这个项目由人和模型协作完成，分工如下：
-
-- **dreamworld（作者）**：提出需求与目标，决定产品方向，决定开源与发布方式。
-- **DeepSeek Harness 桌面端中的 deepseek-flash 模型**：承担具体实现与排查——Electron 主进程（窗口、托盘、计时引擎、数据读写）、渲染层界面与样式、中英文文案、打包与发布脚本、文档撰写；遇到问题负责取证定位（截图比对、像素取样、窗口句柄排查）。
-
-协作方式可以概括为"人定方向、模型动手、人验收"。界面上的每一处细节都来自作者自己的截图与复查意见；模型产出并不被认为天然正确——它确实出过错（例如一次准备示例截图时替换数据把作者的真实记录覆盖了，最后从应用自动备份恢复），所以每次改动都以作者的实际使用验收为准。
-
-开发使用的模型版本记录如下：`deepseek-flash`（显示名 DeepSeek-V4.1-Flash），服务方 `deepseek-account`，推理档位 `high`，上下文 100 万 tokens。日期：2026 年 10 月。
+Two standalone pages, one per language: why this tool exists, what it does, and how the work was split between the human and the model (including the model version).
 
 ---
-
-## English
-
-Tomato Clock is a minimal desktop pomodoro timer for Windows. It does three things: keep today's tasks in view, run one focused stretch at a time, and show where the hours actually went.
-
-It started from a small irritation: several pomodoro apps hide "view your history" behind a paid tier, and all I wanted was to know how many hours I had focused this month. So I wrote my own — data stays on the machine, no account, no network, no subscription.
-
-The feature set is deliberately small: no project management, no collaboration, no leaderboards. Open the app and today's list is there; hover a row and 5 / 15 / 25-minute sessions appear; one click starts the timer, and a break can follow automatically. Statistics break the time down by week, month or year, with per-task share; history adds a heatmap for the longer rhythm. Light and dark themes, Chinese and English UI.
-
-### How it was built
-
-The project is a collaboration between a human and a model:
-
-- **dreamworld (author)**: defined the requirements and goals, set the product direction, and decided to open-source and publish it.
-- **The `deepseek-flash` model inside DeepSeek Harness (desktop)**: did the implementation and diagnosis — Electron main process (window, tray, timer engine, data storage), renderer UI and styling, Chinese/English copy, packaging and release scripts, documentation — and gathered evidence when something broke (screenshot comparison, pixel sampling, window-handle inspection).
-
-The loop is simple: the human sets the direction, the model does the work, the human accepts the result. Every visual detail in the current version came from the author's own screenshots and follow-up notes. Model output is not assumed correct — it has made real mistakes (one round of preparing demo screenshots overwrote the author's own records, later recovered from the app's automatic backup), which is why each change is verified in real use before it ships.
-
-Model version used for development: `deepseek-flash` (display name DeepSeek-V4.1-Flash), provider `deepseek-account`, reasoning effort `high`, 1M-token context. Date: October 2026.
-
----
-
 ## 功能 Features
 
 **中文**
