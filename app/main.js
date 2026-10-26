@@ -38,6 +38,17 @@ function writeJson(file, obj) {
   } catch (e) { return false; }
 }
 
+// --data-dir=<目录> / --data-dir <目录>：使用指定数据目录（演示、测试、多套数据），
+// 优先级最高：不读/不写 storage-location.json，也不做旧数据迁移，避免污染默认数据。
+const CLI_DATA_DIR = (() => {
+  const argv = process.argv.slice(1);
+  for (let i = 0; i < argv.length; i++) {
+    const a = argv[i];
+    if (a.startsWith('--data-dir=')) return a.slice('--data-dir='.length);
+    if (a === '--data-dir' && argv[i + 1]) return argv[i + 1];
+  }
+  return null;
+})();
 const POINTER_FILE = () => userDataFile('storage-location.json');
 
 function defaultDataDir() {
@@ -59,6 +70,13 @@ let DATA_DIR = null;
 let DATA_DIR_INFO = { dir: '', fallback: false, source: 'default' };
 
 function resolveDataDir() {
+  if (CLI_DATA_DIR) {
+    let dir = path.resolve(CLI_DATA_DIR);
+    if (!canWriteDir(dir)) dir = app.getPath('userData');
+    DATA_DIR = dir;
+    DATA_DIR_INFO = { dir, fallback: false, source: 'cli' };
+    return dir;
+  }
   const ptr = readJson(POINTER_FILE());
   let dir = (ptr && typeof ptr.dir === 'string' && ptr.dir.trim()) ? ptr.dir : defaultDataDir();
   let source = (ptr && ptr.dir) ? 'pointer' : 'default';

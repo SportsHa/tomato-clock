@@ -37,7 +37,7 @@
 
 ## 安装
 
-**不想装 Node.js / 不想自己构建**：直接从 [Releases](https://github.com/dreamworld2023/tomato-clock/releases) 下载 `TomatoClock-Setup-1.0.1.exe`，双击安装即可（按用户安装，不需要管理员权限）。
+**不想装 Node.js / 不想自己构建**：直接从 [Releases](https://github.com/dreamworld2023/tomato-clock/releases) 下载 `TomatoClock-Setup-1.0.2.exe`，双击安装即可（按用户安装，不需要管理员权限）。
 
 安装包未做代码签名，Windows SmartScreen 可能提示“未知发布者”：点 **更多信息 → 仍要运行** 即可。
 
@@ -46,6 +46,7 @@
 - 数据文件：`%APPDATA%\tomato-clock\data.json`（可在设置里改目录）
 - 备份：修改数据结构或清空数据前自动写入 `backup-*.json`
 - 窗口位置与大小：`window-state.json`
+- 多套数据 / 演示：启动参数 `--data-dir=<目录>` 使用指定数据目录，默认位置完全不碰（不读不写、不做迁移）
 - 不经网络发送任何内容，不含统计埋点
 
 ## 从源码构建

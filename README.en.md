@@ -37,7 +37,7 @@ Full introduction (why it exists, what it does, how the work was split between t
 
 ## Install
 
-**Don't want to install Node.js or build it yourself?** Download `TomatoClock-Setup-1.0.1.exe` from [Releases](https://github.com/dreamworld2023/tomato-clock/releases) and run it — it installs per user and needs no administrator rights.
+**Don't want to install Node.js or build it yourself?** Download `TomatoClock-Setup-1.0.2.exe` from [Releases](https://github.com/dreamworld2023/tomato-clock/releases) and run it — it installs per user and needs no administrator rights.
 
 The build is not code-signed, so Windows SmartScreen may warn about an unknown publisher — choose **More info → Run anyway**.
 
@@ -46,6 +46,7 @@ The build is not code-signed, so Windows SmartScreen may warn about an unknown p
 - Data file: `%APPDATA%\tomato-clock\data.json` (the folder is configurable in Settings)
 - Backups: `backup-*.json` is written automatically before a data-shape change or a clear
 - Window position and size: `window-state.json`
+- Multiple profiles / demos: launch with `--data-dir=<path>` to use an isolated data folder — the default location is not read, written, or migrated
 - Nothing is sent over the network; there is no telemetry
 
 ## Build from source
