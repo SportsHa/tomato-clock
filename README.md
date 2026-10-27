@@ -37,7 +37,7 @@
 
 ## 安装
 
-**不想装 Node.js / 不想自己构建**：直接从 [Releases](https://github.com/dreamworld2023/tomato-clock/releases) 下载 `TomatoClock-Setup-1.0.2.exe`，双击安装即可（按用户安装，不需要管理员权限）。
+**不想装 Node.js / 不想自己构建**：直接从 [Releases](https://github.com/SportsHappyDream/tomato-clock/releases) 下载 `TomatoClock-Setup-1.0.2.exe`，双击安装即可（按用户安装，不需要管理员权限）。
 
 安装包未做代码签名，Windows SmartScreen 可能提示“未知发布者”：点 **更多信息 → 仍要运行** 即可。
 
@@ -81,6 +81,6 @@ npm run dist         # 打包安装包，输出到 app/dist
 
 ## 许可
 
-[MIT](LICENSE) © 2026 dreamworld
+[MIT](LICENSE) © 2026 SportsHappy
 
 第三方名称说明：本项目与 Pomodoro Technique®、RoundPie 等产品无关联，仅为独立的个人实现。

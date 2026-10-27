@@ -16,7 +16,7 @@ The feature set is deliberately small: no project management, no collaboration, 
 
 The project is a collaboration between a human and a model:
 
-- **dreamworld (author)**: defined the requirements and goals, set the product direction, and decided to open-source and publish it.
+- **SportsHappy (author)**: defined the requirements and goals, set the product direction, and decided to open-source and publish it.
 - **The `deepseek-flash` model inside DeepSeek Harness (desktop)**: did the implementation and diagnosis — Electron main process (window, tray, timer engine, data storage), renderer UI and styling, Chinese/English copy, packaging and release scripts, documentation — and gathered evidence when something broke (screenshot comparison, pixel sampling, window-handle inspection).
 
 The loop is simple: the human sets the direction, the model does the work, the human accepts the result. Every visual detail in the current version came from the author's own screenshots and follow-up notes. Model output is not assumed correct — it has made real mistakes (one round of preparing demo screenshots overwrote the author's own records, later recovered from the app's automatic backup), which is why each change is verified in real use before it ships.
