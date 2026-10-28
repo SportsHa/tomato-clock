@@ -459,3 +459,6 @@ body.dark ::-webkit-scrollbar-thumb{background:#3A3F45}
 body.dark ::-webkit-scrollbar-thumb:hover{background:#4A5057}
 
 .pane::-webkit-scrollbar{width:0;height:0}
+/* ---------- CENTER-WHITE 计时页中区纯白纸面 ---------- */
+.center{background:#FFFFFF}
+body.dark .center{background:#181A1D}
