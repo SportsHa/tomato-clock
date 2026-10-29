@@ -90,6 +90,7 @@ const STR = {
     'set.cells': '底部番茄格',
     'set.cellsHint': '按目标数',
     'set.remind': '提醒',
+    'set.prompt': '结束弹窗提醒',
     'set.sound': '结束提示音',
     'set.notify': '桌面通知',
     'set.data': '启动与数据',
@@ -122,7 +123,20 @@ const STR = {
     'notify.focusTitle': '专注结束',
     'notify.focusBody': '这一轮 {0} 分钟完成了。',
     'notify.restTitle': '休息结束',
-    'notify.restBody': '可以开始下一个番茄了。'
+    'notify.restBody': '可以开始下一个番茄了。',
+
+    'prompt.focusEyebrow': '番茄完成',
+    'prompt.focusTitle': '休息一下？',
+    'prompt.focusBody': '这一轮 {0} 分钟已经记下了。接下来休息 {1} 分钟，还是跳过继续？',
+    'prompt.focusPrimary': '开始休息 {0} 分钟',
+    'prompt.focusSecondary': '跳过，继续专注',
+    'prompt.restEyebrow': '休息结束',
+    'prompt.restTitle': '开始下一个番茄？',
+    'prompt.restBody': '休息了 {0} 分钟，可以接着做了。',
+    'prompt.restPrimary': '开始 {0} 分钟',
+    'prompt.restSecondary': '稍后再说',
+    'prompt.hint': '60 秒后自动开始休息',
+    'prompt.hintRest': '60 秒后自动收起，不会开始新番茄'
   },
   en: {
     'app.name': 'Tomato Clock',
@@ -213,6 +227,7 @@ const STR = {
     'set.cells': 'Bottom cells',
     'set.cellsHint': 'Follows goal',
     'set.remind': 'Alerts',
+    'set.prompt': 'Pop-up when a round ends',
     'set.sound': 'End chime',
     'set.notify': 'Desktop notification',
     'set.data': 'Startup & data',
@@ -245,7 +260,20 @@ const STR = {
     'notify.focusTitle': 'Focus finished',
     'notify.focusBody': 'A {0}-minute round is done.',
     'notify.restTitle': 'Break finished',
-    'notify.restBody': 'Ready for the next pomodoro.'
+    'notify.restBody': 'Ready for the next pomodoro.',
+
+    'prompt.focusEyebrow': 'Round complete',
+    'prompt.focusTitle': 'Take a break?',
+    'prompt.focusBody': 'This {0}-minute round is saved. Break for {1} minutes, or skip and keep going?',
+    'prompt.focusPrimary': 'Break for {0} min',
+    'prompt.focusSecondary': 'Skip, keep focusing',
+    'prompt.restEyebrow': 'Break over',
+    'prompt.restTitle': 'Start the next round?',
+    'prompt.restBody': 'You rested {0} minutes. Ready when you are.',
+    'prompt.restPrimary': 'Start {0} min',
+    'prompt.restSecondary': 'Not now',
+    'prompt.hint': 'Starts the break automatically in 60s',
+    'prompt.hintRest': 'Closes in 60s without starting a new round'
   }
 };
 

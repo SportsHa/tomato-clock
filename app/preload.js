@@ -33,6 +33,10 @@ contextBridge.exposeInMainWorld('api', {
   onDone: (fn) => ipcRenderer.on('timer:done', (e, d) => fn(d)),
   onUiCmd: (fn) => ipcRenderer.on('ui:cmd', (e, cmd) => fn(cmd)),
 
+  /* 结束提醒弹窗 */
+  promptShow: (payload) => ipcRenderer.invoke('prompt:show', payload),
+  onPromptAction: (fn) => ipcRenderer.on('prompt:action', (e, data) => fn(data)),
+
   /* 窗口 */
   minimize: () => ipcRenderer.send('win:minimize'),
   resetSize: () => ipcRenderer.send('win:resetSize'),

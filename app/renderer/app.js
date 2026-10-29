@@ -28,7 +28,7 @@
   function defaults() {
     return {
       v: 1, tasks: [], pomodoros: [], timer: null,
-      settings: { goal: 8, focus: 25, rest: 5, autoRest: true, sound: true, notify: false, lang: 'zh', theme: 'light' }
+      settings: { goal: 8, focus: 25, rest: 5, autoRest: true, prompt: true, sound: true, notify: false, lang: 'zh', theme: 'light' }
     };
   }
   // 外观：light / dark（深色参照 DSH 桌面端）
@@ -99,14 +99,32 @@
     render();
   }
 
-  // 主进程报时完成：记账 + 提示 + 可选自动进入休息
+  // 主进程报时完成：记账 + 提示 + 结束弹窗（弹窗开启时由用户点按钮决定下一步）
   function onTimerDone(d) {
     const minutes = Math.round(d.totalMs / 60000);
+    timer = null;
     if (d.mode === 'focus') {
       db.pomodoros.push({ id: uid(), taskId: d.taskId, startAt: d.finishedAt - d.totalMs, endAt: d.finishedAt, minutes });
       save();
       beep();
       notify(t('notify.focusTitle'), t('notify.focusBody', minutes));
+      if (db.settings.prompt !== false) {
+        render();
+        showPrompt({
+          kind: 'focusEnd',
+          eyebrow: t('prompt.focusEyebrow'),
+          title: t('prompt.focusTitle'),
+          body: t('prompt.focusBody', minutes, db.settings.rest),
+          primaryLabel: t('prompt.focusPrimary', db.settings.rest),
+          secondaryLabel: t('prompt.focusSecondary'),
+          hint: t('prompt.hint'),
+          minutes: db.settings.rest,
+          restMinutes: db.settings.rest,
+          taskId: d.taskId,
+          timeoutMs: 60000
+        });
+        return;
+      }
       if (db.settings.autoRest) {
         api.timerStart({ taskId: d.taskId, mode: 'break', minutes: db.settings.rest }).then(s => {
           timer = s; render();
@@ -116,9 +134,55 @@
     } else {
       beep();
       notify(t('notify.restTitle'), t('notify.restBody'));
+      if (db.settings.prompt !== false) {
+        render();
+        showPrompt({
+          kind: 'restEnd',
+          eyebrow: t('prompt.restEyebrow'),
+          title: t('prompt.restTitle'),
+          body: t('prompt.restBody', minutes),
+          primaryLabel: t('prompt.restPrimary', db.settings.focus),
+          secondaryLabel: t('prompt.restSecondary'),
+          hint: t('prompt.hintRest'),
+          minutes: db.settings.focus,
+          restMinutes: db.settings.rest,
+          taskId: d.taskId,
+          timeoutMs: 60000
+        });
+        return;
+      }
     }
-    timer = null;
     render();
+  }
+
+  function showPrompt(payload) {
+    if (!api.promptShow) return;
+    payload.theme = db.settings.theme;
+    api.promptShow(payload).catch(() => {});
+  }
+
+  // 用户在弹窗里点了按钮（或 60 秒超时自动收起的 auto）
+  function onPromptAction({ action, payload }) {
+    if (!payload) return;
+    if (payload.kind === 'focusEnd') {
+      if (action === 'primary' || action === 'auto') {
+        api.timerStart({ taskId: payload.taskId, mode: 'break', minutes: payload.restMinutes }).then(s => {
+          timer = s; render();
+        });
+        return;
+      }
+      timer = null; render();       // 跳过休息：继续对着原任务专注
+      return;
+    }
+    if (payload.kind === 'restEnd') {
+      if (action === 'primary') {
+        api.timerStart({ taskId: payload.taskId, mode: 'focus', minutes: payload.minutes }).then(s => {
+          timer = s; render();
+        });
+        return;
+      }
+      timer = null; render();       // 稍后再说：停在原地
+    }
   }
 
   // 顺时针倒计时：缺口从 12 点起、顺时针扩大；配合 .ring svg 的 rotate(-90deg)
@@ -750,6 +814,7 @@
       + stepRow(t('set.dailyGoal'), 'goal', s.goal, t('unit.pcs'))
       + '<div class="sr"><span class="lab">' + t('set.cells') + '</span><span class="val">' + t('set.cellsHint') + '</span></div>'
       + '<div class="h">' + t('set.remind') + '</div>'
+      + switchRow(t('set.prompt'), 'prompt', s.prompt !== false)
       + switchRow(t('set.sound'), 'sound', s.sound)
       + switchRow(t('set.notify'), 'notify', s.notify)
       + '<div class="h">' + t('set.data') + '</div>'
@@ -904,6 +969,7 @@
     api.onTick(s => { timer = s; paintTimer(); });
     api.onState(s => { timer = s; render(); });
     api.onDone(d => onTimerDone(d));
+    if (api.onPromptAction) api.onPromptAction(onPromptAction);
     if (api.onUiCmd) api.onUiCmd(cmd => {
       if (cmd === 'stats') location.hash = '#/stats';
       else if (cmd === 'settings') location.hash = '#/settings';

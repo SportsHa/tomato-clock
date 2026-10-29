@@ -374,6 +374,78 @@ function createWindow() {
   });
 }
 
+/* ---------- 结束提醒弹窗（独立置顶小窗，不抢键盘焦点） ---------- */
+let promptWin = null;
+let promptAutoTimer = null;
+let promptPayload = null;
+
+function promptBounds(w, h) {
+  const d = screen.getDisplayNearestPoint(screen.getCursorScreenPoint());
+  const a = d.workArea;
+  return {
+    x: Math.round(a.x + a.width - w - 24),
+    y: Math.round(a.y + a.height - h - 24),
+    width: w,
+    height: h
+  };
+}
+
+function showPrompt(payload) {
+  promptPayload = payload || {};
+  const W = 348, H = 212;
+  if (promptWin && !promptWin.isDestroyed()) {
+    promptWin.setBounds(promptBounds(W, H));
+    promptWin.webContents.send('prompt:data', promptPayload);
+    promptWin.showInactive();
+    promptWin.setAlwaysOnTop(true, 'floating');
+  } else {
+    promptWin = new BrowserWindow({
+      ...promptBounds(W, H),
+      frame: false,
+      resizable: false,
+      movable: true,
+      minimizable: false,
+      maximizable: false,
+      fullscreenable: false,
+      skipTaskbar: true,
+      alwaysOnTop: true,
+      show: false,
+      transparent: true,
+      backgroundColor: '#00000000',
+      webPreferences: {
+        preload: path.join(__dirname, 'prompt-preload.js'),
+        contextIsolation: true,
+        nodeIntegration: false,
+        sandbox: false
+      }
+    });
+    promptWin.loadFile(path.join(__dirname, 'renderer', 'prompt.html'));
+    promptWin.once('ready-to-show', () => {
+      promptWin.setAlwaysOnTop(true, 'floating');
+      promptWin.webContents.send('prompt:data', promptPayload);
+      promptWin.showInactive();   // 出现但不抢焦点，用户继续打字不受影响
+    });
+    promptWin.on('closed', () => { promptWin = null; });
+  }
+  if (promptAutoTimer) clearTimeout(promptAutoTimer);
+  const ms = promptPayload.timeoutMs || 60000;
+  promptAutoTimer = setTimeout(() => resolvePrompt('auto'), ms);
+  return true;
+}
+
+function closePrompt() {
+  if (promptAutoTimer) { clearTimeout(promptAutoTimer); promptAutoTimer = null; }
+  if (promptWin && !promptWin.isDestroyed()) promptWin.close();
+  promptWin = null;
+}
+
+function resolvePrompt(action) {
+  const payload = promptPayload || {};
+  closePrompt();
+  promptPayload = null;
+  if (win && !win.isDestroyed()) win.webContents.send('prompt:action', { action, payload });
+}
+
 function toggleWindow() {
   if (!win) return;
   if (win.isVisible() && !win.isMinimized()) { win.hide(); return; }
@@ -545,6 +617,11 @@ ipcMain.on('win:resetSize', () => {
 });
 ipcMain.on('win:minimize', () => { if (win) win.minimize(); });
 ipcMain.on('win:close', () => { if (win) win.hide(); });
+/* 结束提醒弹窗 */
+ipcMain.handle('prompt:show', (e, payload) => showPrompt(payload));
+ipcMain.on('prompt:action', (e, action) => resolvePrompt(action));
+ipcMain.on('prompt:close', () => closePrompt());
+
 ipcMain.handle('app:autostart', (e, on) => {
   try {
     app.setLoginItemSettings({ openAtLogin: !!on, path: process.execPath, args: ['--minimized'] });
@@ -585,6 +662,6 @@ if (!gotLock) {
   });
 
   app.on('window-all-closed', e => e.preventDefault());
-  app.on('before-quit', () => { quitting = true; stopTicker(); });
+  app.on('before-quit', () => { quitting = true; closePrompt(); stopTicker(); });
   app.on('will-quit', () => globalShortcut.unregisterAll());
 }
