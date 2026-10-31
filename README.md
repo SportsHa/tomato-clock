@@ -37,7 +37,7 @@
 
 ## 安装
 
-**不想装 Node.js / 不想自己构建**：直接从 [Releases](https://github.com/SportsHappyDream/tomato-clock/releases) 下载 `TomatoClock-Setup-1.0.10.exe`，双击安装即可（按用户安装，不需要管理员权限）。
+**不想装 Node.js / 不想自己构建**：直接从 [Releases](https://github.com/SportsHappyDream/tomato-clock/releases) 下载 `TomatoClock-Setup-1.0.8.exe`，双击安装即可（按用户安装，不需要管理员权限）。
 
 安装包未做代码签名，Windows SmartScreen 可能提示“未知发布者”：点 **更多信息 → 仍要运行** 即可。
 

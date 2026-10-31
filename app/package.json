@@ -1,6 +1,6 @@
 {
   "name": "tomato-clock",
-  "version": "1.0.10",
+  "version": "1.0.8",
   "private": true,
   "description": "Minimal pomodoro timer with local history",
   "main": "main.js",
