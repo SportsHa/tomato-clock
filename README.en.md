@@ -37,7 +37,7 @@ Full introduction (why it exists, what it does, how the work was split between t
 
 ## Install
 
-**Don't want to install Node.js or build it yourself?** Download `TomatoClock-Setup-1.0.9.exe` from [Releases](https://github.com/SportsHappyDream/tomato-clock/releases) and run it — it installs per user and needs no administrator rights.
+**Don't want to install Node.js or build it yourself?** Download `TomatoClock-Setup-1.0.10.exe` from [Releases](https://github.com/SportsHappyDream/tomato-clock/releases) and run it — it installs per user and needs no administrator rights.
 
 The build is not code-signed, so Windows SmartScreen may warn about an unknown publisher — choose **More info → Run anyway**.
 

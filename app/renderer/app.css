@@ -207,7 +207,9 @@ body{background:var(--canvas);color:var(--ink);display:flex;justify-content:cent
 /* ---------- Electron 无边框窗口 ---------- */
 .titlebar{height:38px;display:flex;align-items:center;gap:7px;padding:0 8px 0 12px;flex:none;
   -webkit-app-region:drag;background:var(--chrome);border-bottom:1px solid var(--line)}
-.titlebar .brand{width:10px;height:10px;border-radius:2.5px;background:var(--accent);flex:none;padding:0;margin:0;display:block}
+.titlebar .brand{width:14px;height:14px;border-radius:4px;flex:none;padding:0;margin:0;display:block;
+  background:url(../assets/icon.png) center/14px 14px no-repeat;
+  box-shadow:0 0 0 .5px rgba(24,40,60,.12)}
 .titlebar .nm{font-size:13px;color:#55636F;letter-spacing:.06em;font-family:var(--sans-r)}
 .titlebar .win{margin-left:auto;display:flex;gap:2px}
 .titlebar .wbtn{width:40px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:6px;color:#6E7C8A;cursor:pointer;-webkit-app-region:no-drag;font-size:16px;line-height:1}
