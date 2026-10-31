@@ -214,7 +214,8 @@ body{background:var(--canvas);color:var(--ink);display:flex;justify-content:cent
 .titlebar .wbtn:hover{background:#EAF2F8;color:#3C4A58}
 .titlebar .wbtn.close:hover{background:#F6E3E3;color:#B4453C}
 .titlebar .wbtn.min{font-size:21px;padding-bottom:3px}
-.vbody{flex:1;display:flex;flex-direction:column;min-height:0}
+.vbody{flex:1;display:flex;flex-direction:column;min-height:0;background:#FFFFFF}
+body.dark .vbody{background:#181A1D}
 
 .tb2.page .title{font-size:21px;line-height:1.4;-webkit-line-clamp:1;color:#26343F;letter-spacing:.02em}
 .tb2.page .back{font-size:21px}
